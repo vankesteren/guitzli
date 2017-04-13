@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>guitzli jpg encoder</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/spingly.css">
+    
+    <!-- Insert this line above script imports -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- Script imports -->
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--script src="js/connections.js" charset="utf-8"></script-->
+    <script src="js/functions.js" charset="utf-8"></script>
+    
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+    
+    
+  </head>
+  <body>
+    <div class="window">
+      <!-- Your app's content goes inside .window-content -->
+      <div class="window-content">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li id="openBtn" class="btn navbar-btn">Open <i class="glyphicon glyphicon-folder-open"></i></li>
+                
+                <li id="convertBtn" class="btn navbar-btn" disabled=true>Convert <i class="glyphicon glyphicon-forward"></i></li>
+                
+                <li id="saveBtn" class="btn navbar-btn" disabled=true>Save <i class="glyphicon glyphicon-floppy-save"></i></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-form">
+                  <label for="qualitySlider">Quality <i class="glyphicon glyphicon-picture"></i> </label>
+                  
+                  <input type="number" class="form-control text-center" id="qualitySlider" min="84" max="100" value="95" onkeydown="return false"/>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </nav>
+        
+        <div class="container-fluid">
+          <div class="row" style="align-items: center;">
+            <div class="col-sm-5 text-center">
+              <h3> Input image </h3>
+              </br>
+              <img id="inputImg" src="" class="img-rounded img-responsive"></img>
+            </div>
+            <div class="col-sm-2 text-center">
+              <h3><i id="gly" class="glyphicon glyphicon-forward"></i></h3>
+            </div>
+            <div class="col-sm-5 text-center">
+              <h3> Output image </h3>
+              </br>
+              <img id="outputImg" src="" class="img-rounded img-responsive"></img>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+    </div>
+  </body>
+  
+</html>

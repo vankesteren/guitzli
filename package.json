@@ -1,0 +1,96 @@
+{
+  "name": "guitzli",
+  "productName": "guitzli",
+  "version": "0.1.0",
+  "description": "Convert image files for web using google's guetzli algorithm",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "guetzli",
+    "gui",
+    "jpg",
+    "compression"
+  ],
+  "author": "Erik-Jan van Kesteren",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vankesteren/guitzli.git"
+  },
+  "dependencies": {
+    "electron-compile": "^6.3.0",
+    "temp": "^0.8.3",
+    "path": "^0.12.7",
+    "url": "^0.11.0",
+    "dialog": "^0.2.0"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "dmg"
+        ],
+        "linux": [
+          "deb"
+        ]
+      },
+      "electronPackagerConfig": {
+        "name": "guitzli",
+        "electronVersion": "1.6.2",
+        "asar": true,
+        "icon": "build/icon.ico",
+        "win32metadata": {
+          "ProductName": "guitzli",
+          "CompanyName": "Erik-Jan van Kesteren"
+        }
+      },
+      "electronWinstallerConfig": {
+        "name": "guitzli-setup",
+        "iconUrl": "https://raw.githubusercontent.com/vankesteren/guitzli/master/build/icon.ico"
+      },
+      "electronInstallerDMG": {
+        "background": "build/background.png",
+        "icon": "build/icon.icns",
+        "format": "ULFO"
+      },
+      "electronInstallerDebian": {
+        "icon": "build/icon.png",
+        "categories": [
+          "Utility"
+        ]
+      },
+      "github_repository": {
+        "owner": "vankesteren",
+        "name": "guitzli"
+      },
+      "windowsStoreConfig": {
+        "packageName": "guitzli"
+      },
+      "publish_targets": {
+        "win32": [
+          "github"
+        ],
+        "darwin": [
+          "github"
+        ],
+        "linux": [
+          "github"
+        ]
+      }
+    }
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.3.3",
+    "babel-preset-react": "^6.24.1",
+    "electron-prebuilt-compile": "1.6.2"
+  }
+}
