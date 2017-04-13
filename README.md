@@ -15,8 +15,10 @@ For windows: install directory will be `C:\Users\<username>\AppData\Local\guitzl
 
 # How to build from source
 
-Install [Node.js](https://nodejs.org/en/download/) 6.10.2, and then:
+1. Install [Node.js](https://nodejs.org/en/download/) 6.10.2.
+2. Install electron-forge: `npm install -g electron-forge`
 
+3. Clone, install, and start.
 ```bash
 git clone https://github.com/vankesteren/guitzli.git
 cd guitzli
@@ -28,6 +30,5 @@ npm start
 
 # How to package and create binaries
 
-1. `npm install -g electron-forge`
-
-2. `electron-forge make`
+It's simple: `electron-forge make` for your current architecture.
+You can also specify another architecture by adding (for example) `--arch=ia32`.
