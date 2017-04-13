@@ -26,8 +26,7 @@
     "electron-compile": "^6.3.0",
     "temp": "^0.8.3",
     "path": "^0.12.7",
-    "url": "^0.11.0",
-    "dialog": "^0.2.0"
+    "url": "^0.11.0"
   },
   "config": {
     "forge": {
