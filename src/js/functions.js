@@ -13,9 +13,10 @@ $(function(){
     var filePath = dialog.showOpenDialog({ filters: [
       { name: 'Image File', extensions: ['jpg', 'png'] }
     ]});
-    console.log(filePath);
+    var inputPath = path.normalize(filePath.toString());
+    console.log(inputPath);
     if (typeof filePath == "undefined") { return; }
-    $('#inputImg').attr("src", filePath);
+    $('#inputImg').attr("src", inputPath);
     $('#convertBtn').attr("disabled", false);
   });
 
@@ -61,8 +62,9 @@ $(function(){
         console.log('Conversion complete, file in: ' + tempName)
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
-        console.log(tempName);
-        $('#outputImg').attr("src", tempName);
+        var outputPath = path.normalize(tempName.toString());
+        console.log(outputPath);
+        $('#outputImg').attr("src", outputPath);
         $('#saveBtn').attr("disabled",false);
         $('#gly').attr("class","glyphicon glyphicon-forward")
         $('#convertBtn').attr("disabled", false);
