@@ -11,13 +11,16 @@ For windows: install directory will be `C:\Users\<username>\AppData\Local\guitzl
 
 # How to build from source
 
-1. Install [Node.js](https://nodejs.org/en/download/) 6.10.2
+Install [Node.js](https://nodejs.org/en/download/) 6.10.2, and then:
 
-2. `git clone https://github.com/vankesteren/guitzli.git`
+```bash
+git clone https://github.com/vankesteren/guitzli.git
+cd guitzli
+npm install
+npm start
+```
 
-3. `npm install`
 
-4. `npm start`
 
 # How to package and create binaries
 
