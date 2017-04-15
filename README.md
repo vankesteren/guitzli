@@ -7,6 +7,8 @@
 
 Convert image files for web using google's [`guetzli`](https://github.com/google/guetzli) algorithm. This app is built on [`electron`](https://electron.atom.io/) with help from [`electron-forge`](https://beta.electronforge.io/). Also uses [`JQuery`](https://jquery.com/) and [`Bootstrap`](http://getbootstrap.com/) for the user interface.
 
+![screenshot](screenshot.png)
+
 # How to install
 Download the latest version for your system from [Releases](https://github.com/vankesteren/guitzli/releases)
 
