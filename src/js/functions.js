@@ -4,19 +4,30 @@ $(function(){
   const tmp = require('temp');
   const fs = require('fs');
   const path = require('path');
+  const url = require('url');
   const { dialog } = require('electron').remote;
 
-  tmp.track()
-
+  tmp.track();
+  var filePath;
+  var tempName;
+  
+  window.readBase64 = function(filePath){
+    var bitmap = fs.readFileSync(filePath);
+    return new Buffer(bitmap).toString('base64');
+  }
+  
   // connections with interface logic
   $('#openBtn').click(function(){
-    var filePath = dialog.showOpenDialog({ filters: [
+    filePath = dialog.showOpenDialog({ filters: [
       { name: 'Image File', extensions: ['jpg', 'png'] }
     ]});
-    var inputPath = path.normalize(filePath.toString());
-    console.log(inputPath);
     if (typeof filePath == "undefined") { return; }
+    var inputPath = filePath.toString();
+    var inputExt = path.extname(inputPath).replace(".","")
+    console.log(inputPath);
     $('#inputImg').attr("src", inputPath);
+    $('#inputImg').attr("src", "data: "+inputExt+";base64, "+readBase64(inputPath));
+    
     $('#convertBtn').attr("disabled", false);
   });
 
@@ -25,10 +36,10 @@ $(function(){
       console.log('convertBtn disabled!')
     } else {
       $('#convertBtn').attr('disabled', true); 
-      var inputImg = $('#inputImg').attr('src');
+      var inputImg = filePath; //$('#inputImg').attr("src");
       var arch = os.arch();
       var platform = os.platform();
-      var tempName = tmp.path({suffix: '.jpg'});
+      tempName = tmp.path({suffix: '.jpg'});
       var mem = os.freemem() / 1000000;
       var memtot = os.totalmem() / 1000000;
       var quality = $('#qualitySlider').val()
@@ -62,9 +73,9 @@ $(function(){
         console.log('Conversion complete, file in: ' + tempName)
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
-        var outputPath = path.normalize(tempName.toString());
+        var outputPath = tempName.toString();
         console.log(outputPath);
-        $('#outputImg').attr("src", outputPath);
+        $('#outputImg').attr("src", "data: jpg;base64, " + readBase64(outputPath));
         $('#saveBtn').attr("disabled",false);
         $('#gly').attr("class","glyphicon glyphicon-forward")
         $('#convertBtn').attr("disabled", false);
@@ -76,7 +87,7 @@ $(function(){
     if ($('#saveBtn').attr('disabled') == "disabled") {
       console.log('saveBtn disabled!')
     } else { 
-      var filePath = $('#outputImg').attr("src")
+      var filePath = tempName;
       dialog.showSaveDialog({ filters: [  
           { name: 'JPEG Image', extensions: ['jpg'] }
         ]}, function (fileName) {
@@ -86,4 +97,6 @@ $(function(){
       });
     };
   });
+  
+
 });

@@ -27,7 +27,7 @@ electron.app.once('ready', function () {
   }))
   
   // Open the DevTools.
-  //  window.webContents.openDevTools();
+  // window.webContents.openDevTools();
 
   // Show window when page is ready
   window.once('ready-to-show', function () {

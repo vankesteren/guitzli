@@ -44,7 +44,7 @@
       "electronPackagerConfig": {
         "name": "guitzli",
         "electronVersion": "1.6.2",
-        "asar": true,
+        "asar": false,
         "icon": "build/icon.ico",
         "win32metadata": {
           "ProductName": "guitzli",
