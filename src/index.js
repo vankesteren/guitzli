@@ -1,10 +1,46 @@
-const electron = require('electron') // http://electron.atom.io/docs/api
-const path = require('path')         // https://nodejs.org/api/path.html
-const url = require('url')           // https://nodejs.org/api/url.html
+const electron = require('electron'); // http://electron.atom.io/docs/api
+const path = require('path');         // https://nodejs.org/api/path.html
+const url = require('url');           // https://nodejs.org/api/url.html
+const os = require('os');
+const cp = require('child_process');
+const {ipcMain} = require('electron');
+const pstree = require('ps-tree');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let window;
+
+global.procs = [];
+
+if (os.platform() === "win32") {
+  global.killPID = function(PID) { 
+    cp.execSync("Taskkill /PID " + PID + " /F", (error, stdout, stderr) => {
+      console.log("error:" + stderr);
+      console.log(stdout);
+    });
+  }
+} else {
+  global.killPID = function(PID) { 
+    cp.execSync("kill -9 " + PID, (error, stdout, stderr) => {
+      console.log("error:" + stderr);
+      console.log(stdout);
+    });
+  }
+}
+
+ipcMain.on("init", function() { console.log("IPC connection initialised.") })
+
+ipcMain.on("add-pid", function(event, pids){
+  console.log("Process started: " + pids)
+  pids.forEach(function(p){global.procs.push(p)});
+  console.log(global.procs);
+})
+
+ipcMain.on("remove-pid", function(event, pid){
+  console.log("Process stopped: " + pid)
+  var index = global.procs.indexOf(pid);
+  global.procs.splice(index, 1);
+})
 
 // Wait until the app is ready
 electron.app.once('ready', function () {
@@ -17,22 +53,22 @@ electron.app.once('ready', function () {
     
     // Don't show the window until it ready, this prevents any white flickering
     show: false
-  })
-
+  });
+  
   // Load a URL in the window to the local index.html path
   window.loadURL(url.format({
     pathname: path.join(__dirname, '\\index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
   
   // Open the DevTools.
   // window.webContents.openDevTools();
 
   // Show window when page is ready
-  window.once('ready-to-show', function () {
+  window.once('ready-to-show', function () {  
     window.show();
-  })
+  });
   
   // Emitted when the window is closed.
   window.on('closed', () => {
@@ -41,13 +77,18 @@ electron.app.once('ready', function () {
     // when you should delete the corresponding element.
     window = null;
   });
-})
+});
 
 // Quit when all windows are closed.
 electron.app.on('window-all-closed', () => {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
+  if (global.procs.length == 0){
+    console.log("No procs to kill. Quitting.")
+    electron.app.quit();
+  } else {
+    global.procs.forEach(function(pid) {
+      console.log("Killing " + pid);
+      global.killPID(pid);
+    });
     electron.app.quit();
   }
 });

@@ -34,3 +34,9 @@ npm start
 
 It's simple: `electron-forge make` for your current architecture.
 You can also specify another architecture by adding (for example) `--arch=ia32`.
+
+
+# To-do
+
+sooner: Proper packaging.
+later: Multi-image support. (batch processing & multi-core)

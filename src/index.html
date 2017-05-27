@@ -38,16 +38,18 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li id="openBtn" class="btn navbar-btn">Open <i class="glyphicon glyphicon-folder-open"></i></li>
-                
+                <li> </li>
                 <li id="convertBtn" class="btn navbar-btn" disabled=true>Convert <i class="glyphicon glyphicon-forward"></i></li>
-                
+                <li> </li>
+                <li id="stopBtn" class="btn navbar-btn" disabled=true>Cancel <i class="glyphicon glyphicon-stop"></i></li>
+                <li> </li>
                 <li id="saveBtn" class="btn navbar-btn" disabled=true>Save <i class="glyphicon glyphicon-floppy-save"></i></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-form">
                   <label for="qualitySlider">Quality <i class="glyphicon glyphicon-picture"></i> </label>
                   
-                  <input type="number" class="form-control text-center" id="qualitySlider" min="84" max="100" value="95" onkeydown="return false"/>
+                  <input type="number" class="form-control text-center" id="qualitySlider" min="84" max="100" value="84" onkeydown="return false"/>
                 </li>
               </ul>
             </div>
@@ -61,6 +63,8 @@
               <h3> Input image </h3>
               </br>
               <img id="inputImg" src="" class="img-rounded img-responsive"></img>
+              </br>
+              <code id="inputSize"></code>
             </div>
             <div class="col-sm-2 text-center">
               <h3><i id="gly" class="glyphicon glyphicon-forward"></i></h3>
@@ -69,8 +73,10 @@
               <h3> Output image </h3>
               </br>
               <img id="outputImg" src="" class="img-rounded img-responsive"></img>
+              </br>
+              <code id="outputSize"></code>
             </div>
-          </div>
+          </div>            
         </div>
       </div>
         
