@@ -4,16 +4,16 @@
     <title>guitzli jpg encoder</title>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/spingly.css">
+    <link rel="stylesheet" href="css/material.css">
+    <link rel="stylesheet" href="css/materialfont.css">
+    <link rel="stylesheet" href="css/custom.css">
     
     <!-- Insert this line above script imports -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
     <!-- Script imports -->
     <script src="js/jquery-3.2.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/material.js"></script>
     <script src="js/functions.js" charset="utf-8"></script>
     
     <!-- Insert this line after script imports -->
@@ -25,59 +25,83 @@
     <div class="window">
       <!-- Your app's content goes inside .window-content -->
       <div class="window-content">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+          <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+            <div class="mdl-layout__header-row">
+              <div id="gly" class="mdl-spinner mdl-js-spinner"></div>
+              <div class="mdl-layout-spacer"></div>
+              <span class="mdl-layout-title">Guitzli</span>
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                <i class="material-icons">more_vert</i>
               </button>
+              <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                <li class="mdl-menu__item">About</li>
+                <li class="mdl-menu__item">Contact</li>
+                <li class="mdl-menu__item">License</li>
+              </ul>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li id="openBtn" class="btn navbar-btn">Open <i class="glyphicon glyphicon-folder-open"></i></li>
-                <li> </li>
-                <li id="convertBtn" class="btn navbar-btn" disabled=true>Convert <i class="glyphicon glyphicon-forward"></i></li>
-                <li> </li>
-                <li id="stopBtn" class="btn navbar-btn" disabled=true>Cancel <i class="glyphicon glyphicon-stop"></i></li>
-                <li> </li>
-                <li id="saveBtn" class="btn navbar-btn" disabled=true>Save <i class="glyphicon glyphicon-floppy-save"></i></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-form">
-                  <label for="qualitySlider">Quality <i class="glyphicon glyphicon-picture"></i> </label>
+          </header>
+          
+          <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+              <span class="mdl-layout-title">Menu</span>
+            </header>
+            <nav id="menu" class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+              <a id="openBtn" class="mdl-navigation__link" href="javascript:void(0)"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">folder</i>Open</a>
+              <a id="convertBtn" class="mdl-navigation__link" href="javascript:void(0)" disabled=true><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forward</i>Convert</a>
+              <a id="stopBtn" class="mdl-navigation__link" href="javascript:void(0)" disabled=true><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">stop</i>Cancel</a>
+              <a id="saveBtn" class="mdl-navigation__link" href="javascript:void(0)" disabled=true><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">save</i>Save</a>
+            </nav>
+          </div>
+          <main class="mdl-layout__content mdl-color--grey-100">
+            <div class="mdl-grid demo-content">
+              <!-- Input image -->
+              <div class="image-box mdl-cell--6-col mdl-cell--8-col-tablet mdl-grid">
+                <div class="image-box-header mdl-shadow--2dp mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                  <button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon mdl-header-logo">
+                    <i class="material-icons">more_vert</i>
+                  </button>
                   
-                  <input type="number" class="form-control text-center" id="qualitySlider" min="84" max="100" value="84" onkeydown="return false"/>
-                </li>
-              </ul>
+                  <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="menu-speed">
+                    <li id="inputSize" class="img-menu__item">filesize</li>
+                  </ul>
+                  <span class="image-box-title"> Input image </span>
+                </div>
+                <div class="image-box-content mdl-shadow--2dp" hidden>
+                  <img id="inputImg" src="">HAHAHAHAHAHAH</img>
+                  <span id="inputSize" class="demo-card-image__filesize mdl-color-text--blue-grey-900" style="font-size:2em"> </span>
+                </div>
+              </div>
+                          
+              <!-- Output image -->  
+              <div class="image-box mdl-cell--6-col mdl-cell--8-col-tablet mdl-grid">
+                <div class="image-box-header mdl-shadow--2dp mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+                  <button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon mdl-header-logo">
+                    <i class="material-icons">more_vert</i>
+                  </button>
+                  
+                  <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="menu-speed">
+                    <li id="inputSize" class="img-menu__item">filesize</li>
+                  </ul>
+                  <span class="image-box-title"> Output image </span>
+                </div>
+                <div class="image-box-content mdl-shadow--2dp">
+                  <img id="outputImg" src="">HAHAHAHAHAHAH</img>
+                  <span id="inputSize" class="demo-card-image__filesize mdl-color-text--blue-grey-900" style="font-size:2em"> </span>
+                </div>
+              </div>
+              
+              
             </div>
             
-          </div>
-        </nav>
-        
-        <div class="container-fluid">
-          <div class="row" style="align-items: center;">
-            <div class="col-sm-5 text-center">
-              <h3> Input image </h3>
-              </br>
-              <img id="inputImg" src="" class="img-rounded img-responsive"></img>
-              </br>
-              <code id="inputSize"></code>
-            </div>
-            <div class="col-sm-2 text-center">
-              <h3><i id="gly" class="glyphicon glyphicon-forward"></i></h3>
-            </div>
-            <div class="col-sm-5 text-center">
-              <h3> Output image </h3>
-              </br>
-              <img id="outputImg" src="" class="img-rounded img-responsive"></img>
-              </br>
-              <code id="outputSize"></code>
-            </div>
-          </div>            
+            
+            
+          </main>
         </div>
+        
+        
+        
+        
       </div>
         
       </div>

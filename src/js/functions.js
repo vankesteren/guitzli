@@ -63,7 +63,6 @@ $(function(){
     var inputPath = filePath.toString();
     var inputExt = path.extname(inputPath).replace(".","")
     console.log(inputPath);
-    $('#inputImg').attr("src", inputPath);
     $('#inputImg').attr("src", "data: "+inputExt+";base64, "+readBase64(inputPath));
     $('#inputSize').html(getFileSize(inputPath));
     $('#convertBtn').attr("disabled", false);
@@ -82,7 +81,7 @@ $(function(){
       var mem = os.freemem() / 1000000;
       var memtot = os.totalmem() / 1000000;
       var quality = $('#qualitySlider').val()
-      $('#gly').attr('class',"glyphicon glyphicon-refresh gly-spin")
+      $('#gly').attr('class',"mdl-spinner mdl-js-spinner is-active")
       
       if (platform === "win32" && arch === "x64"){
         var cmd = path.join(__dirname, "\\bin\\guetzli_windows_x86-64.exe").replace('app.asar', 'app.asar.unpacked');
@@ -114,7 +113,7 @@ $(function(){
           console.error(`${error}`);
           console.log(`stdout: ${stdout}`);
           console.log(`stderr: ${stderr}`);
-          $('#gly').attr("class","glyphicon glyphicon-forward")
+          $('#gly').attr("class","mdl-spinner mdl-js-spinner")
           $('#convertBtn').attr("disabled", false);
           $('#stopBtn').attr('disabled', true);
           //dialog.showMessageBox({ message: `Guetzli error: ${error}`,
@@ -132,7 +131,7 @@ $(function(){
         $('#outputImg').attr("src", "data: jpg;base64, " + readBase64(outputPath));
         $('#outputSize').html(getFileSize(outputPath));
         $('#saveBtn').attr("disabled",false);
-        $('#gly').attr("class","glyphicon glyphicon-forward")
+        $('#gly').attr("class","mdl-spinner mdl-js-spinner")
         $('#convertBtn').attr("disabled", false);
         $('#stopBtn').attr('disabled', true);
       });
