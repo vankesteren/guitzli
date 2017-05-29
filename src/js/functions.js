@@ -11,6 +11,7 @@ $(function(){
   const pstree = require('ps-tree');
   const { dialog } = require('electron').remote;
   const { ipcRenderer} = require('electron');
+  const imgDim = require('image-size');
 
   // message main
   ipcRenderer.send("init");
@@ -40,8 +41,16 @@ $(function(){
       }
   }
   
-  window.getImageDimensions = function(filePath) {
-    
+  window.msToTime = function(duration) {
+    var seconds = parseInt((duration/1000)%60)
+        , minutes = parseInt((duration/(1000*60))%60)
+        , hours = parseInt((duration/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours.toString() : hours.toString();
+    minutes = (minutes < 10) ? "0" + minutes.toString() : minutes.toString();
+    seconds = (seconds < 10) ? "0" + seconds.toString() : seconds.toString();
+
+    return hours + ":" + minutes + ":" + seconds;
   }
   
   if (os.platform() === "win32") {
@@ -68,15 +77,20 @@ $(function(){
     ]});
     if (typeof filePath == "undefined") { return; }
     
-    toggleMenu();
+    hideMenu();
     showInput();
     startInputLoad();
     var inputPath = filePath.toString();
     var inputExt = path.extname(inputPath).replace(".","")
+    var dim = imgDim(inputPath);
+    var memneed = Math.round(300 * dim.width * dim.height / 1000000 );
     console.log(inputPath);
     setTimeout(function() {
       $('#inputImg').attr("src", "data: "+inputExt+";base64, "+readBase64(inputPath));
+      $('#fileName').html(path.basename(inputPath   ))
       $('#inputSize').html(getFileSize(inputPath));
+      $('#fileDim').html(dim.width + " x " + dim.height)
+      $('#ramNeeded').html("~ " + memneed + " MB ram needed") // according to google
       $('#convertBtn').attr("disabled", false);
       stopInputLoad();
       showInputInfo();
@@ -90,7 +104,7 @@ $(function(){
       console.log('convertBtn disabled!')
     } else {
       $('#convertBtn').attr('disabled', true); 
-      toggleMenu();
+      hideMenu();
       showOutput();
       startOutputLoad();
       setTimeout(function() {
@@ -108,9 +122,9 @@ $(function(){
         } else if (platform === "win32" && (arch === "x32" || arch === "x86")) {
           var cmd = path.join(__dirname, "\\bin\\guetzli_windows_x86.exe").replace('app.asar', 'app.asar.unpacked');
         } else if (platform === "darwin" && arch === "x64") {
-          var cmd = path.join(__dirname, "\\bin\\guetzli_darwin_x86-64").replace('app.asar', 'app.asar.unpacked');
+          var cmd = path.join(__dirname, "/bin/guetzli_darwin_x86-64").replace('app.asar', 'app.asar.unpacked');
         } else if (platform === "linux" && arch === "x64"){
-          var cmd = path.join(__dirname, "\\bin\\guetzli_linux_x86-64").replace('app.asar', 'app.asar.unpacked');
+          var cmd = path.join(__dirname, "/bin/guetzli_linux_x86-64").replace('app.asar', 'app.asar.unpacked');
         } else {
           console.error();
         }
@@ -122,8 +136,18 @@ $(function(){
         
         // allow the process to be stopped
         $('#stopBtn').attr('disabled', false);
+        var start = window.performance.now();
         window.guetzli = cp.exec(command, (error, stdout, stderr) => {
-      
+          // remove pids from global
+          console.log("remove pids", pids);
+          pstree(window.guetzli.pid, function(err, proc){
+            proc.map(function (p) {
+              ipcRenderer.send("remove-pid", p.PID);
+            });
+            pids = [];
+          });
+          
+          
           if (error) {
             
             console.error(`${error}`);
@@ -134,18 +158,13 @@ $(function(){
             $('#stopBtn').attr('disabled', true);
             //dialog.showMessageBox({ message: `Guetzli error: ${error}`,
             //                        buttons: ["OK"] });
-            // remove pids from global
-            console.log("remove pids", pids);
-            ipcRenderer.send("remove-pid", pids);
-            pids = [];
             hideOutput();
             return;
           }
-          // remove pids from global
-          console.log("remove pids", pids);
-          ipcRenderer.send("remove-pid", pids);
-          pids = [];
-
+          
+          var ct = msToTime(start - window.performance.now());
+          
+          var printCt = "Elapsed: " + ct;
           console.log('Conversion complete, file in: ' + tempName)
           console.log(`stdout: ${stdout}`);
           console.log(`stderr: ${stderr}`);
@@ -153,6 +172,7 @@ $(function(){
           console.log(outputPath);
           $('#outputImg').attr("src", "data: jpg;base64, " + readBase64(outputPath));
           $('#outputSize').html(getFileSize(outputPath));
+          $("#convTime").html(printCt);
           $('#saveBtn').attr("disabled",false);
           $('#outputLoading').removeClass("is-active")
           $('#convertBtn').attr("disabled", false);
@@ -161,18 +181,17 @@ $(function(){
           showOutputInfo();
           showOutput();
         }, 10);
-      });
-      
-      // Register started processes
-      pstree(window.guetzli.pid, function(err, proc){
-        proc.map(function (p) {
-          console.log("Adding " + p.PID);
-          pids.push(p.PID); // to variable here
+        
+        // Register started processes
+        pstree(window.guetzli.pid, function(err, proc){
+          proc.map(function (p) {
+            console.log("Adding " + p.PID);
+            pids.push(p.PID); // to variable here
+          });
+          ipcRenderer.send("add-pid", pids); // to main process
         });
-        ipcRenderer.send("add-pid", pids); // to main process
+
       });
-      
-      
     };
   });
   
