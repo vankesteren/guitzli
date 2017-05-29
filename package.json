@@ -1,7 +1,7 @@
 {
   "name": "guitzli",
   "productName": "guitzli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Convert image files for web using google's guetzli algorithm",
   "main": "src/index.js",
   "scripts": {
@@ -27,7 +27,8 @@
     "temp": "^0.8.3",
     "path": "^0.12.7",
     "url": "^0.11.0",
-    "ps-tree": "^1.1.0"
+    "ps-tree": "^1.1.0",
+    "image-size": "^0.5.4"
   },
   "config": {
     "forge": {

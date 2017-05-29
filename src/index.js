@@ -13,19 +13,33 @@ let window;
 global.procs = [];
 
 if (os.platform() === "win32") {
-  global.killPID = function(PID) { 
-    cp.execSync("Taskkill /PID " + PID + " /F", (error, stdout, stderr) => {
-      console.log("error:" + stderr);
-      console.log(stdout);
-    });
-  }
+  
+    global.killPID = function(PID) { 
+      try { // haha lazy solution
+        cp.execSync("Taskkill /PID " + PID + " /F", (error, stdout, stderr) => {
+          if (error) console.log("error:" + stderr);
+        });
+      } 
+      catch(err) {
+        console.log("Taskkill error")
+      }
+    }
+  
+  
 } else {
-  global.killPID = function(PID) { 
-    cp.execSync("kill -9 " + PID, (error, stdout, stderr) => {
-      console.log("error:" + stderr);
-      console.log(stdout);
-    });
-  }
+  
+    global.killPID = function(PID) { 
+      try {
+        cp.execSync("kill -9 " + PID, (error, stdout, stderr) => {
+          if (error) console.log("error:" + stderr);
+        });
+      }
+      catch(err) {
+        console.log("Taskkill error")
+      }
+    }
+  
+  
 }
 
 ipcMain.on("init", function() { console.log("IPC connection initialised.") })
@@ -47,7 +61,7 @@ electron.app.once('ready', function () {
   // Create a new window
   window = new electron.BrowserWindow({
     // Set the initial width to 800px
-    width: 800,
+    width: 1100,
     // Set the initial height to 600px
     height: 600,
     
