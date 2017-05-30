@@ -23,15 +23,24 @@ __Guetzli conversion is slow__! Because of this, there are only a handful of web
 [Here](https://github.com/google/guetzli#using) you can find some more information on using guetzli (and thus guitzli!) from the people at google.
 
 ## How to install
+
+### Windows
 Download the latest version for your system from [Releases](https://github.com/vankesteren/guitzli/releases). Only recent versions of windows are supported at this time. I'll try to support linux and osx as soon as possible!
+Install directory will be `%LOCALAPPDATA%\guitzli`. From there you can create a desktop shortcut should you so desire.
 
-For windows: install directory will be `%LOCALAPPDATA%\guitzli`. From there you can create a desktop shortcut should you so desire.
-
+### Debian/Ubuntu Linux
+```shell
+# Optional cd to downloads
+cd ~/Downloads
+wget  -O guitzli.deb "https://github.com/vankesteren/guitzli/releases/download/V0.3.0/guitzli-linux-64.deb"`
+sudo dpkg -i guitzli.deb
+```
 
 ## How to build from source
 
 1. Install [Node.js](https://nodejs.org/en/download/) 6.10.2.
-2. Install electron-forge: `npm install -g electron-forge`
+
+2. On linux, also install `libgconf-2-4`.
 
 3. Clone, install, and start.
 ```bash
@@ -44,8 +53,7 @@ npm start
 
 ## How to package and create binaries
 
-It's simple: `electron-forge make` for your current architecture.
-You can also specify another architecture by adding (for example) `--arch=ia32`.
+It's simple: `npm run make` for to generate 32-bit and 64 bit binaries for your current architecture. You can also build only one architecture: `npm run make32` or `npm run make64`.
 
 
 # To-do
