@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
-    "make": "make64 & make32",
+    "make": "npm run make64 & npm run make32",
     "make64": "electron-forge make --arch=x64",
     "make32": "electron-forge make --arch=ia32"
   },
