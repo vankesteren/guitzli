@@ -58,6 +58,10 @@ ipcMain.on("remove-pid", function(event, pid){
 
 // Wait until the app is ready
 electron.app.once('ready', function () {
+  
+  // Handle squirrel installer events
+  if(require('electron-squirrel-startup')) electron.app.quit();
+  
   // Create a new window
   window = new electron.BrowserWindow({
     // Set the initial width to 800px

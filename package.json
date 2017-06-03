@@ -1,7 +1,7 @@
 {
-  "name": "guitzli",
-  "productName": "guitzli",
-  "version": "0.3.0",
+  "name": "Guitzli",
+  "productName": "Guitzli",
+  "version": "0.3.1",
   "description": "Convert image files for web using google's guetzli algorithm",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "guetzli",
     "gui",
     "jpg",
-    "compression"
+    "compression",
+    "conversion"
   ],
   "author": "Erik-Jan van Kesteren",
   "license": "MIT",
@@ -28,7 +29,8 @@
     "path": "^0.12.7",
     "url": "^0.11.0",
     "ps-tree": "^1.1.0",
-    "image-size": "^0.5.4"
+    "image-size": "^0.5.4",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "config": {
     "forge": {
@@ -44,19 +46,19 @@
         ]
       },
       "electronPackagerConfig": {
-        "name": "guitzli",
+        "name": "Guitzli",
         "electronVersion": "1.6.2",
         "asar": {
           "unpackDir": "src/bin"
         },
         "icon": "build/icon.ico",
         "win32metadata": {
-          "ProductName": "guitzli",
+          "ProductName": "Guitzli",
           "CompanyName": "Erik-Jan van Kesteren"
         }
       },
       "electronWinstallerConfig": {
-        "name": "guitzli-setup",
+        "name": "Guitzli-setup",
         "iconUrl": "https://raw.githubusercontent.com/vankesteren/guitzli/master/build/icon.ico"
       },
       "electronInstallerDMG": {
@@ -75,7 +77,7 @@
         "name": "guitzli"
       },
       "windowsStoreConfig": {
-        "packageName": "guitzli"
+        "packageName": "Guitzli"
       },
       "publish_targets": {
         "win32": [
