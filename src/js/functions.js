@@ -30,12 +30,12 @@ $(function(){
   window.getFileSize = function(path) {
       var stats = fs.statSync(path);
       var bytes = stats.size;
-      if (bytes > 1000000000.0) {
-        return Math.round(bytes / 10000000.0) / 100 + " GB"
-      } else if (bytes > 1000000.0) {
-        return Math.round(bytes / 10000.0) / 100 + " MB"
-      } else if (bytes > 1000.0){
-        return Math.round(bytes / 10.0) / 100 + " KB"
+      if (bytes > 1073741824.0) {
+        return Math.round(bytes / 10737418.24) / 100 + " GB"
+      } else if (bytes > 1048576.0) {
+        return Math.round(bytes / 10485.76) / 100 + " MB"
+      } else if (bytes > 1024.0){
+        return Math.round(bytes / 10.24) / 100 + " KB"
       } else {
         return Math.round(bytes * 100) / 100 + " bytes"
       }
