@@ -3,7 +3,7 @@ $(function(){
   // This is where ui functionality lives.
   
   // Variables
-  var licenseLink = "https://opensource.org/licenses/MIT";
+  var licenseLink = "https://github.com/vankesteren/guitzli/blob/master/LICENSE";
   var aboutLink = "https://github.com/vankesteren/guitzli";
     
   // Connections
@@ -34,7 +34,12 @@ $(function(){
   }
   
   function openUrl(url) {
-    require('electron').shell.openExternal(url)
+    require("electron").shell.openExternal(url)
+  }
+  
+  function setAppVersion() {
+    var str = "Version " + require("electron").remote.app.getVersion();
+    $("#appVersion").html(str);
   }
   
   // Global functions
@@ -90,4 +95,8 @@ $(function(){
   window.showOutputInfo = function() {
     $("#outputInfo").show();
   }
+  
+  // Run init scripts
+  setAppVersion();
+  
 });
