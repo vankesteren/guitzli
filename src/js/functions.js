@@ -162,7 +162,7 @@ $(function(){
             return;
           }
           
-          var ct = msToTime(start - window.performance.now());
+          var ct = msToTime(window.performance.now() - start);
           
           var printCt = "Elapsed: " + ct;
           console.log('Conversion complete, file in: ' + tempName)
