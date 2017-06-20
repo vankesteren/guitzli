@@ -8,7 +8,8 @@
     "start": "electron-forge start",
     "make": "npm run make64 & npm run make32",
     "make64": "electron-forge make --arch=x64",
-    "make32": "electron-forge make --arch=ia32"
+    "make32": "electron-forge make --arch=ia32",
+    "test": "echo 0"
   },
   "keywords": [
     "guetzli",
