@@ -1,12 +1,13 @@
-<center>
-<img src="https://raw.githubusercontent.com/vankesteren/guitzli/master/build/icon.png" width="20%"></img>
-<h1>Guitzli
-<br>
-[![Appveyor status](https://ci.appveyor.com/api/projects/status/24xoj95ytbf4kn0g?svg=true)](https://ci.appveyor.com/project/vankesteren/guitzli)
-[![GitHub release](https://img.shields.io/github/release/vankesteren/guitzli.svg)](https://github.com/vankesteren/guitzli/releases)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/vankesteren/blog/master/LICENSE)
-</h1></center>
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/vankesteren/guitzli/master/build/icon.png" width="20%"></img>
+  <h2 align = "center">Guitzli</h2>
+  <h5 align="center">Optimise images for web</h5>
+  <p align="center">
+    <a href="https://ci.appveyor.com/project/vankesteren/guitzli"><img src="https://ci.appveyor.com/api/projects/status/24xoj95ytbf4kn0g?svg=true" alt="Appveyor Build"></a>
+    <a href="https://github.com/vankesteren/guitzli/releases"><img src="https://img.shields.io/github/release/vankesteren/guitzli.svg" alt="GitHub release"></a>
+    <a href="https://raw.githubusercontent.com/vankesteren/blog/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-orange.svg" alt="GitHub license"></a>
+  </p>
+</p>
 <br/>
 
 ## Optimise images for web
