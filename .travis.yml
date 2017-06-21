@@ -15,8 +15,5 @@ before_script:
 script:
   - npm run make  
 
-deploy:
-  - provider: script
-    script: deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
-  on:
-    all_branches: true
+after_script:
+  - deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
