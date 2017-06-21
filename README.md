@@ -1,10 +1,13 @@
+<center>
 <img src="https://raw.githubusercontent.com/vankesteren/guitzli/master/build/icon.png" width="20%"></img>
-
-# Guitzli
+<h1>Guitzli
+<br>
+[![Appveyor status](https://ci.appveyor.com/api/projects/status/24xoj95ytbf4kn0g?svg=true)](https://ci.appveyor.com/project/vankesteren/guitzli)
 [![GitHub release](https://img.shields.io/github/release/vankesteren/guitzli.svg)](https://github.com/vankesteren/guitzli/releases)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/vankesteren/blog/master/LICENSE)
-[![GitHub commits](https://img.shields.io/github/commits-since/vankesteren/guitzli/v0.1.0.svg)](https://github.com/vankesteren/guitzli/commits/master)
+</h1></center>
 
+<br/>
 
 ## Optimise images for web
 Convert image files for web using google's [`guetzli`](https://github.com/google/guetzli) algorithm. This app is built on [`electron`](https://electron.atom.io/) with help from [`electron-forge`](https://beta.electronforge.io/). Also uses [`JQuery`](https://jquery.com/) and [`Material Design Lite`](http://getmdl.io) for the user interface.
