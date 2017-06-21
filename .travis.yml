@@ -1,0 +1,19 @@
+language: node_js
+node_js: 6
+
+cache:
+  directories:
+    - node_modules
+
+os:
+  - linux
+
+before_script:
+  - npm install
+  - npm prune
+
+script:
+  - npm run make  
+
+after_script:
+  - ./deploy.sh $USERNAME $PASSWD $UPLOAD_LINK

@@ -1,0 +1,31 @@
+environment:
+  nodejs_version: '6'
+
+platform:
+  - x86
+
+cache:
+  - node_modules
+  - '%USERPROFILE%\.electron'
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
+  - ps: Update-AppveyorBuild -Version "$env:package_version-$env:APPVEYOR_BUILD_NUMBER"
+  - npm install
+  - npm install npm -g
+  - npm prune
+
+test_script:
+  - npm run test
+
+build_script:
+  - node --version
+  - npm --version
+  - npm run make
+  
+artifacts:
+  - path: out/make/squirrel.windows/x64/*.exe
+    name: Guitzli_setup_win_x64
+  - path: out/make/squirrel.windows/ia32/*.exe
+    name: Guitzli_setup_win_ia32
