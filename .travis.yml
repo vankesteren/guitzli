@@ -8,9 +8,21 @@ cache:
 os:
   - linux
 
-before_script:
+addons:
+  artifacts: true
+    paths: 
+  
+  
+install:
   - npm install
+  
+before_script:
   - npm prune
-
+  
+deploy:
+  - provider: script
+    script: deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
+  on:
+    all_branches: true
 script:
   - npm run make
