@@ -16,4 +16,4 @@ script:
   - npm run make  
 
 after_script:
-  - deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
+  - ./deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
