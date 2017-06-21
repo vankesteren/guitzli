@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/vankesteren/guitzli/master/build/icon.png" width="20%"></img>
-  <h3 align="center">Guitzli</h3>
-  <p align="center">Optimise images for web</p>
+  <h1 align="center">Guitzli</h1>
   <p align="center">
     <a href="https://ci.appveyor.com/project/vankesteren/guitzli"><img src="https://ci.appveyor.com/api/projects/status/24xoj95ytbf4kn0g?svg=true" alt="Appveyor Build"></a>
     <a href="https://travis-ci.org/vankesteren/guitzli"><img src="https://api.travis-ci.org/vankesteren/guitzli.svg"></a>
