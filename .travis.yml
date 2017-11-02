@@ -13,7 +13,7 @@ before_script:
   - npm prune
 
 script:
-  - npm run make  
+  - npm run build-deb
 
 after_script:
   - ./deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
