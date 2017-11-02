@@ -9,7 +9,7 @@
     "make": "npm run make64 & npm run make32",
     "make64": "electron-forge make --arch=x64",
     "make32": "electron-forge make --arch=ia32",
-    "build-deb": "sh scripts/build.sh",
+    "build-guetzli-linux": "sh scripts/build.sh",
     "test": "echo 0"
   },
   "keywords": [
