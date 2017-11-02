@@ -3,7 +3,7 @@
   <h1 align="center">Guitzli</h1>
   <p align="center">
     <a href="https://ci.appveyor.com/project/vankesteren/guitzli"><img src="https://ci.appveyor.com/api/projects/status/24xoj95ytbf4kn0g?svg=true" alt="Appveyor Build"></a>
-    <a href="https://travis-ci.org/vankesteren/guitzli"><img src="https://api.travis-ci.org/vankesteren/guitzli.svg"></a>
+    <a href="https://travis-ci.org/vankesteren/guitzli"><img src="https://api.travis-ci.org/vankesteren/guitzli.svg?branch=master"></a>
     <a href="https://github.com/vankesteren/guitzli/releases"><img src="https://img.shields.io/github/release/vankesteren/guitzli.svg" alt="GitHub release"></a>
     <a href="https://raw.githubusercontent.com/vankesteren/blog/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-orange.svg" alt="GitHub license"></a>
   </p>
