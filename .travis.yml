@@ -11,9 +11,10 @@ os:
 before_script:
   - npm install
   - npm prune
+  - npm run build-guetzli-linux
 
 script:
-  - npm run build-deb
+  - npm run make64
 
 after_script:
   - ./deploy.sh $USERNAME $PASSWD $UPLOAD_LINK
