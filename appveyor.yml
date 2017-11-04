@@ -23,7 +23,7 @@ test_script:
 
 build_script:
   - MSBuild /p:Platform="x64";Configuration="Release" guetzli/guetzli.vcxproj
-  - cp .\guetzli\bin\x86_64\Release\guetzli src\bin\guetzli_linux_x86-64
+  - cp .\guetzli\bin\x86_64\Release\*.exe .\src\bin\guetzli_windows_x86-64.exe
   - node --version
   - npm --version
   - npm run make64
