@@ -8,6 +8,10 @@ cache:
 os:
   - linux
 
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install fakeroot
+
 before_script:
   - npm install
   - npm prune
