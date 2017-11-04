@@ -1,5 +1,5 @@
 environment:
-  nodejs_version: '9'
+  nodejs_version: '8'
 
 platform:
   - x64
@@ -12,8 +12,6 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
   - ps: Update-AppveyorBuild -Version "$env:package_version-$env:APPVEYOR_BUILD_NUMBER"
-  - vcpkg install libpng:x64-windows
-  - vcpkg integrate install
   - npm install npm -g
   - npm install
   - npm prune
@@ -22,8 +20,6 @@ test_script:
   - npm run test
 
 build_script:
-  - MSBuild /p:Platform="x64";Configuration="Release" guetzli/guetzli.vcxproj
-  - cp .\guetzli\bin\x86_64\Release\*.exe .\src\bin\guetzli_windows_x86-64.exe
   - node --version
   - npm --version
   - npm run make64
