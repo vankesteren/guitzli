@@ -17,7 +17,7 @@ Convert image files for web using google's [`guetzli`](https://github.com/google
 
 ## When do I use it?
 ### The good
-Guitzli uses [`guetzli`](https://github.com/google/guetzli) to compress your images to a fraction of their original size __without visual quality loss__. This is due to a [really interesting](https://arxiv.org/abs/1703.04421) human-visual-comparison algorithm developed by google. You're not convinced? Downleoad the [before](https://raw.githubusercontent.com/vankesteren/guitzli/master/before.jpg) (8.62 MB) and [after](https://raw.githubusercontent.com/vankesteren/guitzli/master/after.jpg) (1.94 MB) photos from the above screenshot and compare them in as much detail as you want!
+Guitzli uses [`guetzli`](https://github.com/google/guetzli) to compress your images to a fraction of their original size __without visual quality loss__. This is due to a [really interesting](https://arxiv.org/abs/1703.04421) human-visual-comparison algorithm developed by google. You're not convinced? Download the [before](https://raw.githubusercontent.com/vankesteren/guitzli/master/before.jpg) (8.62 MB) and [after](https://raw.githubusercontent.com/vankesteren/guitzli/master/after.jpg) (1.94 MB) photos from the above screenshot and compare them in as much detail as you want!
 
 ### The bad
 __Guetzli conversion is slow!__ Because of this, there are only a handful of web-related cases where guitzli is valuable:
