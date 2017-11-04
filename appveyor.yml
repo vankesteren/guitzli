@@ -1,8 +1,8 @@
 environment:
-  nodejs_version: '6'
+  nodejs_version: '9'
 
 platform:
-  - x86
+  - x64
 
 cache:
   - node_modules
@@ -12,20 +12,22 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
   - ps: Update-AppveyorBuild -Version "$env:package_version-$env:APPVEYOR_BUILD_NUMBER"
-  - npm install
+  - vcpkg install libpng:x64-windows
+  - vcpkg integrate install
   - npm install npm -g
+  - npm install
   - npm prune
 
 test_script:
   - npm run test
 
 build_script:
+  - MSBuild /p:Platform="x64";Configuration="Release" guetzli/guetzli.vcxproj
+  - cp .\guetzli\bin\x86_64\Release\guetzli src\bin\guetzli_linux_x86-64
   - node --version
   - npm --version
-  - npm run make
+  - npm run make64
   
 artifacts:
   - path: out/make/squirrel.windows/x64/*.exe
     name: Guitzli_setup_win_x64
-  - path: out/make/squirrel.windows/ia32/*.exe
-    name: Guitzli_setup_win_ia32
