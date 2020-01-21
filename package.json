@@ -26,12 +26,12 @@
     "url": "git://github.com/vankesteren/guitzli.git"
   },
   "dependencies": {
-    "electron-compile": "^6.3.0",
-    "temp": "^0.8.3",
+    "electron-compile": "^6.4.4",
+    "temp": "^0.9.1",
     "path": "^0.12.7",
     "url": "^0.11.0",
-    "ps-tree": "^1.1.0",
-    "image-size": "^0.5.4",
+    "ps-tree": "^1.2.0",
+    "image-size": "^0.8.3",
     "electron-squirrel-startup": "^1.0.0"
   },
   "config": {
@@ -99,6 +99,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^5.2.4",
-    "electron-prebuilt-compile": "1.7.9"
+    "electron-prebuilt-compile": "4.0.0"
   }
 }
